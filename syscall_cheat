@@ -1,0 +1,24 @@
+I/O FILE int open(const char *pathname, int flags, .../* mode_t mode */);  RETURNS: filedescriptor or -1(error) FLAGS: O_RDONLY,O_WRONLY,O_RDWR,O_CREAT,O_TRUNC,O_APPEND...   MODE:S_IRUSR,S_IWUSR,S_IRGRP,S_IWGRP,S_IROTH,S_IWOTH...#INCLUDES: <sys/stat.h> <fcntl.h>
+I/O FILE int creat(const char *pathname, mode_t mode); RETURNS: filedescriptor or -1(error)  MODE:S_IRUSR,S_IWUSR,S_IRGRP,S_IWGRP,S_IROTH,S_IWOTH...#INCLUDES:<unistd.h>
+I/O FILE ssize_t read(int fd, void *buffer,size_t count); RETURNS: nr of bytes read or 0(EOF) or -1(error) #INCLUDES:<unistd.h>
+I/O FILE ssize_t write(int fd, const void *buffer, size_t count); RETURNS nr of bytes written or -1(error) #INCLUDES:<unistd.h>
+I/O FILE int close(int fd); RETURNS 0 or -1(error) #INCLUDES:<unistd.h>
+I/O FILE off_t lseek(int fd, off_t offset, int whence); RETURNS:new offset or -1(error) WHENCE: SEEK_SET,SEEK_END,SEEK_CUR  #INCLUDES:<unistd.h>
+I/O FILE int fcntl(int fd,int cmd,...); RETURNS:value dpnd on cmd or -1(error) CMD: F_GETFL,F_SETFL,F_DUPFD, FDUPFD_CLOEXEC #INCLUDES:<fcntl.h>
+I/O FILE int dup(int oldfd); RETURNS:new fd or -1(error) #INCLUDES:<unistd.h>
+I/O FILE int dup2(int oldfd,int newfd); RETURNS: newfd or -1(error) #INCLUDES:<unistd.h>
+I/O FILE int dup3(int oldfd,int newfd,int flags); RETURNS: newfd or -1(error)
+I/O FILE ssize_t pread(inf fd,void *buffer,size_t count,off_t offset); RETURNS: nr of bytes read or 0 on EOF or -1(error) #INCLUDES:<unistd.h>
+I/O FILE ssize_t pwrite(int fd,const void *buffer,size_t count,off_t offset); RETURNS: nr of bytes written or 0 on EOF or -1(error) #INCLUDES:<unistd.h>
+I/O FILE ssize_t readv(int fd,struct *iovec,int iovcnt); RETURNS:nr of bytes read or 0 (EOF) or -1(error) #INCLUDES:<sys/uio.h>
+I/O FILE ssize_t writev(int fd,const struct *iovec,int iovcnt); RETURNS:nr of bytes written or -1(error) #INCLUDES:<sys/uio.h>
+I/O FILE ssize_t preadv(int fd,struct *iovec,int iovcnt,off_t offset); RETURNS:nr of bytes or 0(EOF) or -1(error) #INCLUDES:<sys/uio.h>
+I/O FILE ssize_t pwritev(int fd,const struct *iovec,int iovcnt,off_t offset); RETURNS:nr of bytes written or -1(error) #INCLUDES:<sys/uio.h>
+I/O FILE int truncate(const char *pathname,off_t length); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
+I/O FILE int ftruncate(int fd,off_t length); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
+I/O FILE int mkstemp(char *template); RETURNS: fd or -1(error) #INCLUDES:<stdlib.h>
+
+
+
+
+

@@ -17,6 +17,19 @@ I/O FILE ssize_t pwritev(int fd,const struct *iovec,int iovcnt,off_t offset); RE
 I/O FILE int truncate(const char *pathname,off_t length); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
 I/O FILE int ftruncate(int fd,off_t length); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
 I/O FILE int mkstemp(char *template); RETURNS: fd or -1(error) #INCLUDES:<stdlib.h>
+PROCESS pid_t getpid(void); RETURNS:void #INCLUDES:<unistd.h>
+PROCESS pid_t getppid(void) RETURNS:void #INCLUDES:<unistd.h>
+PROCESS char *getenv(const char *name); RETURNS: pointer to value/string or NULL(no such var) #INCLUDES:<stdlib.h>
+PROCESS extern char **environ; RETURNS: global variable -pointer to pointers to env. variables
+PROCESS int putenv(char *string); RETURNS:0(success) or nonzero(error), string is name=value #INCLUDES:<stdlib.h>
+PROCESS int setenv(const char *name,const char *value,int overwrite); RETURNS:0(success) or -1(error) #INCLUDES:<stdlib.h>
+PROCESS int unsetenv(const char *name); RETURNS:0(succes) or -1(error) #INCLUDES:<stdlib.h>
+PROCESS int clearenv(void); RETURNS:0(success) or nonzero(error), equal to environ=NULL; #INCLUDES:<stdlib.h>
+PROCESS int setjmp(jmp_buf env); RETURNS:0 on initial call, nonzero on return via longjmp() #INCLUDES:<setjmp.h>
+PROCESS void longjmp(jmp_buf env,int val); RETURNS:void returns to setjump with value val #INCLUDES:<setjmp.h>
+
+
+
 
 
 

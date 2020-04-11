@@ -61,6 +61,7 @@ unzip -d DIR ARCHIV		(unzips archiv into DIR directory)
 tar -cvf ARCH.tar FILE* DIR*	(Tars the file* and dir* into arch)
 tar -xvf ARCH			(Untars arch)
 tar -rvf ARCH.tar FILE* DIR*	(r appends file* to arch)
+tar -cvzf ARCH.tar FILE* DIR*   (Creates tar archive and also zips the archive)
 (cmd;cmd;....)			(subshell run commands)
 (cmd;cmd;....)&			(start a subshell that will run in the background)
 sleep 10&			(sleeps the proces for 10s in background mode)
@@ -135,6 +136,11 @@ tee FILE1 FILE2...		(reads from standard input and write to standard output and 
 wc FILE				(calculates number of wors, lines characters)
 xargs COMMAND			(takes arguments from stdin (file) and uses them as arguments of a command COMMAND)
 wget URL			(download file from URL)
+dmesg				(kernel logs)
+echo $?				(echoes the exit status of the last command)
+diff FILE1 FILE2		(lists differences between  FILE1 and FILE2)
+
+
 
 
 

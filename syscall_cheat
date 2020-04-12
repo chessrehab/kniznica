@@ -36,6 +36,25 @@ MEMORY void *realloc(void *ptr,size_t size); RETURNS:pointer to reallocated memo
 MEMORY void *memalign(size_t boundary,size_t size); RETURNS:pointer to allocated memory or NULL(error) #INCLUDES:<malloc.h>
 MEMORY int posix_memalign(void **memptr,size_t alignment,size_t size); RETURNS: 0(success) or errnum(error) #INCLUDES:<stdlib.h>
 MEMORY void *alloca(size_t size); RETURNS:pointer to allocated memory on the stack #INCLUDES:<alloca.h>
+USERS struct passwd *getpwname(const char *name); RETURNS:pointer to structure passwd[pw_name,pw_passwd,pw_uid,pw_gid,pw_gecos,pw_dir,pw_shell] or NULL(error) #INCLUDES:<pwd.h>
+USERS struct passwd *getpwuid(uid_t uid); RETURNS:pointer to structure passwdd[pw_name,pw_passwd,pw_uid,pw_gid,pw_gecos,pw_dir,pw_shell] or NULL(error) #INCLUDES:<pwd.h>
+USERS struct group *getgrnam(const char *name); RETURNS:pointer to struct group[gr_name,gr_passwd,gr_gid,**gr_mem] ot NULL(error) #INCLUDES:<grp.h>
+USERS struct group *getgrgid(gid_t gid); RETURNS:pointer to struct group[gr_name,gr_passwd,gr_gid,**gr_mem] ot NULL(error) #INCLUDES:<grp.h>
+USERS struct passwd *getpwent(void); RETURNS:pointer to structure passwd entry or NULL(error) #INCLUDES:<pwd.h>
+USERS void setpwent(void); RETURNS:void -resets the entry point of getpwent() #INCLUDES:<pwd.h>
+USERS void endpwent(void); RETURNS:void -ends the entry of getpwent()-closes down #INCLUDES:<pwd.h>
+USERS struct group *getgrent(void); RETURNS:pointer to structure group entry or NULL(error) #INCLUDES:<grp.h>
+USERS void setgrent(void); RETURNS:void -resets the entry point of getgrent() #INCLUDES:<grp.h>
+USERS void endgrent(void); RETURNS:void -ends the entry of getgrent()-closes down #INCLUDES:<grp.h>
+USERS struct spwd *getspnam(const char *name); RETURNS:pointer to structure spwd[sp_namp,sp_pwdp,sp_lstchg,sp_min,sp_max,sp_warn,sp_inact,sp_expire] #INCLUDES:<shadow.h>
+USERS struct spwd *getspent(void); RETURNS:pointer to structure spwd entry or NULL(error) #INCLUDES:<shadow.h>
+USERS void setspent(void); RETURNS:void -resets the entry point of getspent() #INCLUDES:<shadow.h>
+USERS void endspent(void); RETURNS:void -ends the entry of getspent()-closes down #INCLUDES:<shadow.h>
+USERS char *crypt(const char *key,const *char salt); RETURNS:pointer to encrtypted pwd or NULL(error) #INCLUDES:<unistd.h>
+USERS char *getpass(const *char prompt); RETURNS:pointer to entered pwd or NULL(error) #INCLUDES:<unistd.h>
+
+
+
 
 
 

@@ -27,6 +27,16 @@ PROCESS int unsetenv(const char *name); RETURNS:0(succes) or -1(error) #INCLUDES
 PROCESS int clearenv(void); RETURNS:0(success) or nonzero(error), equal to environ=NULL; #INCLUDES:<stdlib.h>
 PROCESS int setjmp(jmp_buf env); RETURNS:0 on initial call, nonzero on return via longjmp() #INCLUDES:<setjmp.h>
 PROCESS void longjmp(jmp_buf env,int val); RETURNS:void returns to setjump with value val #INCLUDES:<setjmp.h>
+MEMORY	int brk(void *end_data_segment); RETURNS:0(success) or -1(error) #INCLUDES:<unistd.h>
+MEMORY void *sbrk(intptr_t increment); RETURNS:previous program break or (*void)-1 on error #INCLUDES:<unistd.h>
+MEMORY void *malloc(size_t size); RETURNS:pointer to allocated memory or NULL(error) #INCLUDES:<stdlib.h>
+MEMORY free(void *ptr); RETURNS:void #INCLUDES:<stdlib.h>
+MEMORY void *calloc(size_t numitems,size_t size); RETURNS:pointer to allocated memory or NULL(error) #INCLUDES:<stdlib.h>
+MEMORY void *realloc(void *ptr,size_t size); RETURNS:pointer to reallocated memory or NULL(error) #INCLUDES:<stdlib.h>
+MEMORY void *memalign(size_t boundary,size_t size); RETURNS:pointer to allocated memory or NULL(error) #INCLUDES:<malloc.h>
+MEMORY int posix_memalign(void **memptr,size_t alignment,size_t size); RETURNS: 0(success) or errnum(error) #INCLUDES:<stdlib.h>
+MEMORY void *alloca(size_t size); RETURNS:pointer to allocated memory on the stack #INCLUDES:<alloca.h>
+
 
 
 

@@ -52,6 +52,26 @@ USERS void setspent(void); RETURNS:void -resets the entry point of getspent() #I
 USERS void endspent(void); RETURNS:void -ends the entry of getspent()-closes down #INCLUDES:<shadow.h>
 USERS char *crypt(const char *key,const *char salt); RETURNS:pointer to encrtypted pwd or NULL(error) #INCLUDES:<unistd.h>
 USERS char *getpass(const *char prompt); RETURNS:pointer to entered pwd or NULL(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT uid_t getuid(void); RETURNS:real user id of calling process #INCLUDES:<unistd.h>
+PROCESS_CREDENT uid_t geteuid(void); RETURNS:effective user id of calling process#INCLUDES:<unistd.h>
+PROCESS_CREDENT gid_t getgid(void); RETURNS:real group id of calling process #INCLUDES:<unistd.h>
+PROCESS_CREDENT gid_t getegid(void); RETURNS: effective group id of a calling process #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setuid(uid_t uid); RETURNS:0 on success or -1(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setgid(gid_t gid); RETURNS:0 on success or -1(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT int seteuid(uid_t euid); RETURNS:0 on success or -1(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setegid(gid_t egid); RETURNS:0 on success or -1(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setreuid(uid_t ruid,uid_t euid); RETURNS:0 on success or -1(error),args can be -1 for omit #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setregid(gid_t rgid,gid_t egid); RETURNS:0 on success or -1(error),args can be -1 for omit  #INCLUDES:<unistd.h>
+PROCESS_CREDENT int getresuid(uid_t *ruid,uid_t *euid,uid_t *suid); RETURNS:0 on success or -1(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT int getresgid(gid_t *rgid,gid_t *egid,gid_t *sgid); RETURNS:0 on success or -1(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setresuid(uid_t ruid,uid_t euid,uid_t suid); RETURNS:0 on success or -1(error),args can be -1 for omit  #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setresgid(gid_t rgid,gid_t egid,gid_t sgid); RETURNS:0 on success or -1(error),args can be -1 for omit  #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setfsuid(uid_t fsuid); RETURNS:previous fsuid #INCLUDES:<sys/fsuid.h>
+PROCESS_CREDENT int setfsgid(gid_t fsgid); RETURNS:previous fsgid #INCLUDES:<sys/fsuid.h>
+PROCESS_CREDENT int getgroups(int gidsetsize,gid_t grouplis[]); RETURNS: nr of group IDs placed in grouplist on success or -1(error) #INCLUDES:<unistd.h>
+PROCESS_CREDENT int setgroups(size_t gidsetsize,const gid_t *grouplis); RETURNS:0 on success or -1(error) #INCLUDES:<grp.h>
+PROCESS_CREDENT int initgroups(const char *user,gid_t group); RETURNS:0 on success or -1(error) #INCLUDES:<grp.h>
+
 
 
 

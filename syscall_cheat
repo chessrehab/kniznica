@@ -71,6 +71,23 @@ PROCESS_CREDENT int setfsgid(gid_t fsgid); RETURNS:previous fsgid #INCLUDES:<sys
 PROCESS_CREDENT int getgroups(int gidsetsize,gid_t grouplis[]); RETURNS: nr of group IDs placed in grouplist on success or -1(error) #INCLUDES:<unistd.h>
 PROCESS_CREDENT int setgroups(size_t gidsetsize,const gid_t *grouplis); RETURNS:0 on success or -1(error) #INCLUDES:<grp.h>
 PROCESS_CREDENT int initgroups(const char *user,gid_t group); RETURNS:0 on success or -1(error) #INCLUDES:<grp.h>
+TIME int gettimeofday(struct timeval *tv,struct timezone *tz); RETURNS: 0 or -1(error) ,struct timeval:[time_t tv_sec(secs),suseconds_t tv_usec(micros)] #INCLUDES:<sys/time.h>
+TIME time_t time(time_t *timep); RETURNS:number of seconds since Epoch or -1(error) ,usually use NULL as arg #INCLUDES:<time.h>
+TIME char *ctime(const time_t *timep); RETURNS:pointer to string or NULL(error) #INCLUDES:<time.h>
+TIME struct tm *gmtime(const time_t *timep); RETURNS:pointer to structure tm with broken down time attrs,struct tm:[tm_sec,tm_min,tm_hour,tm_mday,tm_mon,tm_year...etc] or NULL(error) #INCLUDES:<time.h>
+TIME struct tm *localtime(const time_t *timep); RETURNS:pointer to structure tm with broken down time attrs or NULL(error) #INCLUDES:<time.h>
+TIME time_t mktime(struct tm *timeptr); RETURNS: seconds since Epoch corr. to the struct in the attr or -1(error) #INCLUDES:<time.h>
+TIME char *asctime(const struct tm *timeptr); RETURNS: pointer to preformatted string or NULL(error) #INCLUDES:<time.h>
+TIME size_t strftime(char *outstr,size_t maxsize,const char *format,const struct tm *timeptr); RETURNS:nr of bytes placed in outstr or NULL(error) %c(all)%d(day)%F(ISO date)%m(month) %Y(YYYY)  #INCLUDES<time.h>
+TIME char *strptime(const char *str,const char *format,struct tm *timeptr); RETURNS:ptr to next unprocessed char or NULL(error) #INCLUDES:<time.h>
+TIME char *setlocale(int category,const char *locale); RETURNS:ptr to a string with new locale or NULL(error) #INCLUDES:<locale.h>
+TIME int settimeoftheday(const struct timeval *tv,const struct timezone *tz); RETURNS: 0 or -1(error) #INCLUDES<sys/time.h>
+TIME int adjtime(struct timeval *delta,struct timeval *olddelta); RETURNS:0 on success or -1(error) #INCLUDES:<sys/time.h>
+TIME clock_t times(struct tms *buf); RETURNS:nr of clock ticks or -1(error),struct tms:[tms_utime,tms_stime,tms_cutime,tms_cstime] #INCLUDES:<sys/times.h>
+TIME clock_t clock(void); RETURNS:total cpu time used by calling process or -1(error) #INCLUDES:<time.h>
+
+
+  
 
 
 

@@ -85,6 +85,12 @@ TIME int settimeoftheday(const struct timeval *tv,const struct timezone *tz); RE
 TIME int adjtime(struct timeval *delta,struct timeval *olddelta); RETURNS:0 on success or -1(error) #INCLUDES:<sys/time.h>
 TIME clock_t times(struct tms *buf); RETURNS:nr of clock ticks or -1(error),struct tms:[tms_utime,tms_stime,tms_cutime,tms_cstime] #INCLUDES:<sys/times.h>
 TIME clock_t clock(void); RETURNS:total cpu time used by calling process or -1(error) #INCLUDES:<time.h>
+SYSTEM long sysconf(int name); RETURNS value of limit or -1(error/indetermined) [_SC_ARG_MAX._SC_CLK_TCK,_SC_LOGIN_NAME_MAX,_SC_OPEN_MAX,_SC_NGROUPS_MAX,_SC_PAGE_SIZE,_SC_RTSIG_MAX,_SC_SIGQUEUE_MAX,_SC_STREAM_MAX] #INCLUDES:<unistd.h>
+SYSTEM long pathconf(const char *pathname,int name); RETURNS:value of limit or -1(error/indetermined) [_PC_NAME_MAX,_PC_PATH_MAX,_PC_PIPE_BUF] #INCLUDES:<unistd.h>
+SYSTEM long fpathconf(int fd,int name); RETURNS:value of limit or -1(error/indetermined) [_PC_NAME_MAX,_PC_PATH_MAX,_PC_PIPE_BUF]  #INCLUDES:<unistd.h>
+SYSTEM int uname(struct utsname *utsbuf): RETURNS:0 or -1(error) struct[ chars *sysname,nodename,release,version,machine,domainname] #INCLUDES:<sys/utsname.h>
+	
+
 
 
   

@@ -89,6 +89,18 @@ SYSTEM long sysconf(int name); RETURNS value of limit or -1(error/indetermined) 
 SYSTEM long pathconf(const char *pathname,int name); RETURNS:value of limit or -1(error/indetermined) [_PC_NAME_MAX,_PC_PATH_MAX,_PC_PIPE_BUF] #INCLUDES:<unistd.h>
 SYSTEM long fpathconf(int fd,int name); RETURNS:value of limit or -1(error/indetermined) [_PC_NAME_MAX,_PC_PATH_MAX,_PC_PIPE_BUF]  #INCLUDES:<unistd.h>
 SYSTEM int uname(struct utsname *utsbuf): RETURNS:0 or -1(error) struct[ chars *sysname,nodename,release,version,machine,domainname] #INCLUDES:<sys/utsname.h>
+I/O FILE BUFFERING int setvbuf(FILE *stream,char *buf,int mode,size_t size); RETURNS: 0 or nonzero(error) mode[_IONBF,_IOLBF,_IOFBF]  #INCLUDES:<stdio.h>
+I/O FILE BUFFERING void setbuf(FILE *stream,char *buf); RETURNS:void  #INCLUDES:<stdio.h>
+I/O FILE BUFFERING void setbuffer(FILE *stream,char *buf,size_t size); RETURNS:void #INCLUDES:<stdio.h>
+I/O FILE BUFFERING inf fflush(FILE *stream); RETURNS: 0 or EOF(error) #INCLUDES:<stdio.h>
+I/O FILE BUFFERING int fsync(int fd); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
+I/O FILE BUFFERING int fdatasync(int fd); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
+I/O FILE BUFFERING void sync(void); RETURNS:void #INCLUDES:<unistd.h>
+I/O FILE BUFFERING int posix_fadvise(int fd,off_t offset,off_t len,int advice); RETURNS:0 or positive nr(error) advice[POSIX_FADV_NORMAL,POSIX_FADV_SEQUENTIAL,POSIX_FADV_RANDOM,POSIX_FADV_WILLNEED,POSIX_FADV_DONTNEED,POSIX_FADV_NOREUSE] #INCLUDES:<fcntl.h>
+I/O FILE BUFFERING int fileno(FILE *stream); RETURNS: fd or -1(error) #INCLUDES:<stdio.h>
+I/O FILE BUFFERING FILE *fdopen(int fd,const char *mode); RETURNS:new file ptr or NULL(error) #INCLUDES:<stdio.h>
+
+
 	
 
 

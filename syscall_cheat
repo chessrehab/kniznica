@@ -99,6 +99,14 @@ I/O FILE BUFFERING void sync(void); RETURNS:void #INCLUDES:<unistd.h>
 I/O FILE BUFFERING int posix_fadvise(int fd,off_t offset,off_t len,int advice); RETURNS:0 or positive nr(error) advice[POSIX_FADV_NORMAL,POSIX_FADV_SEQUENTIAL,POSIX_FADV_RANDOM,POSIX_FADV_WILLNEED,POSIX_FADV_DONTNEED,POSIX_FADV_NOREUSE] #INCLUDES:<fcntl.h>
 I/O FILE BUFFERING int fileno(FILE *stream); RETURNS: fd or -1(error) #INCLUDES:<stdio.h>
 I/O FILE BUFFERING FILE *fdopen(int fd,const char *mode); RETURNS:new file ptr or NULL(error) #INCLUDES:<stdio.h>
+FILESYS int mount(const char *source,const char *target,const char *fstype, unsigned long mountflags,const void *data); RETURNS:0 or -1 mountflags[MS_BIND,MS_DIRSYNC,MS_MANDLOCK,MS_MOVE,MS_NOATIME,MS_NODEV,MS_NODRIRATIME,MS_NOEXEC,MS_NOSUID,MS_RDONLY,MS_REC,MS_RELATIME.MS_REMOUNT,MS_STRICTATIME,MS_SYNCHRONOUS] #INCLUDES:<sys/mount.h>
+FILESYS int umount(const char *target); RETURNS:0 or -1(error) #INCLUDES:<sys/mount.h>
+FILESYS int umount2(const char *target,int flags); RETURNS:0 or -1(error) flags[MNT_DETACH,MNT_EXPIRE,MNT_FORCE,UMOUNT_NOFOLLOW] #INCLUDES:<sys/mount.h>
+FILESYS int statvfs(const char *pathname,struct statvfs *ststvsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
+FILESYS int fstatvfs(int fd,struct statvfs *statvfsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
+
+
+
 
 
 	

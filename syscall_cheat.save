@@ -105,7 +105,7 @@ FILESYS int umount2(const char *target,int flags); RETURNS:0 or -1(error) flags[
 FILESYS int statvfs(const char *pathname,struct statvfs *ststvsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
 FILESYS int fstatvfs(int fd,struct statvfs *statvfsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
 FILE ATTR int stat(const char *pathname,struct stat *statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime] mode[S_IFREG,S_IFDIR,S_IFCHR,S_IFBLK,S_IFIFO,S_IFSOCK,S_IFLNK] #INCLUDES:<sys/stat.h>
-FILE ATTR int lstat(const char *pathname,struct stat statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime] #INCLUDES:<sys/stat.h>
+FILE ATTR int lstat(const char *pathname,struct stat *statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime] #INCLUDES:<sys/stat.h>
 FILE ATTR int fstat(int fd,struct stat *statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime #INCLUDES:<sys/stat.h>
 FILE ATTR int utime(const char *pathname,const struct utimbuf *buf); RETURNS:0 or -1(error) utimbuf[actime,modtime] #INCLUDES:<utime.h>
 FILE ATTR int utimes(const char *pathname,const struct timeval tv[2]); RETURNS:0 or -1(error) #INCLUDES:<sys/time.h>
@@ -120,18 +120,6 @@ FILE ATTR int access(const char *pathname,int mode); RETURNS:0 if all granted,-1
 FILE ATTR mode_t umask(mode_t mask); RETURNS:previous mask #INCLUDES:<sys/stat.h>
 FILE ATTR int chmod(const char *pathname,mode_t mode); RETURNS:0 or -1(error) mode[S_ISUID,S_ISGID,S_ISVTX,S_IRUSR,S_IWUSR,S_IXUSR,S_IRGRP,S_IWGRP,S_IXGRP,S_IROTH,S_IWOTH,S_IXOTH] #INCLUDES:<sys/stat.h>
 FILE ATTR int fchmod(int fd,mode_t mode); RETURNS:0 or -1(error) mode[S_ISUID,S_ISGID,S_ISVTX,S_IRUSR,S_IWUSR,S_IXUSR,S_IRGRP,S_IWGRP,S_IXGRP,S_IROTH,S_IWOTH,S_IXOTH] #INCLUDES:<sys/stat.h>
-FILE ATTR EXT int setxattr(const char *pathname,const char *name,const void *value,size_t size,int flags); RETURNS:0 or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT int lsetxattr(const char *pathname,const char *name,const void *value,size_t size,int flags); RETURNS:0 or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT int fsetxattr(int fd, const char *name,const void *value,size_t size,int flags); RETURNS:0 or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT ssize_t getxattr(const char *pathname,const char *name,void *value,size_t size); RETURNS:size of value or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT ssize_t lgetxattr(const char *pathname,const char *name,void *value,size_t size); RETURNS:size of value or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT ssize_t fgetxattr(int fd,const char *name,void *value,size_t size); RETURNS:size of value or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT int removexattr(const char *pathname,const char *name); RETURNS:0 or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT int lremovexattr(const char *pathname,const char *name); RETURNS:0 or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT int fremovexattr(int fd,const char *name); RETURNS:0 or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT ssize_t listxattr(const char *pathname,char *list,size_t size); RETURNS:nr of bytes copied into list or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT ssize_t llistxattr(const char *pathname,char *list,size_t size); RETURNS:nr of bytes copied into list or -1(error) #INCLUDES:<sys/xattr.h>
-FILE ATTR EXT ssize_t flistxattr(int fd,char *list,size_t size); RETURNS:nr of bytes copied into list or -1(error) #INCLUDES:<sys/xattr.h>
 
 
 

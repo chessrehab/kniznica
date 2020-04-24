@@ -160,10 +160,27 @@ FILE EVENTS int inotify_init(void); RETURNS:fd or -1(error) #INCLUDES:<sys/inoti
 FILE EVENTS int inotify_add_watch(int fd,const char *pathname,uint32_t mask); RETURNS:wdescriptor or -1(error) events[IN_ACCESS,IN_ATTRIB,IN_CLOSE_WRITE,IN_CLOSE_NOWRITE,IN_CREATE,IN_DELETE,IN_DELETE_SELF,IN_MODIFY_SELF,IN_MOVED_FROM,IN_MOVED_TO,IN_OPEN,IN_ALL_EVENTS,IN_MOVE,IN_CLOSE,IN_DONT_FOLLOW,IN_MASK_ADD,IN_ONESHOT,IN_ONLYDIR,IN_IGNORED,IN_ISDIR,IN_Q_OVERFLOW,IN_UNMOUNT]  #INCLUDES"<sys/inotify.h>
 FILE EVENTS int inotify_rm_watch(int fd,int wd); RETURNS:0 or -1(error) #INCLUDES:<sys/inotify.h>
 FILE EVENTS int read(int inotifyFd,char *buf,int buf_len); event=(struct inotify_event *) reads from fd returned from inotify_init, cast to ptr to struct inotify_event[int wd,uint32_t mask,uint32_t cookie,uint32_t len, char name[]] ;RETURNS nr of bytes read
+SIGNALS int signals[SIGABRT-6,SIGALRM-14,SIGBUS-7,SIGCHLD-17,SIGCONT-18.SIGEMT-ud,SIGFPE-8,SIGHUP-1,SIGILL-4,SIGINT-2,SIGIO-29,SIGPOLL,SIGKILL-9,SIGPIPE-13,SIGPROF-27,SIGPWR-30,SIGQUIT-3,SIGSEGV-11,SIGSTKFLT-16,SIGSTOP-19,SIGSYS-31,SIGTERM-15,SIGTRAP-5,SIGTSTP-20,SIGTTIN-21,SIGTTOU-22,SIGURG-23,SIGUSR!-10,SIGUSR2-12,SIGVTALRM-26,SIGWINCH-28,SIGXCPU-24,SIGXFSZ-25
 SIGNALS void(*signal(int sig,void (*handler)(int))) (int); RETURNS:pointer to function of the signal handler that is being changed to new handler or SIG_ERR(error) #INCLUDES:<signal.h>
 SIGNALS int kill(pid_t pid,int sig); RETURNS:0 or -1(error) pid>0:sent to pid,pid==0:every porc in pids porocess group incl. pid,pid==-1: to all processes pid has permissions to send #INCLUDES:<signal.h>
 SIGNALS int raise(int sig); RETURNS:0 or nonzero(error) #INCLUDES<signal.h>
 SIGNALS killpg(pid_t pgrp,int sig); RETURNS:0 or -1(error) if pgrp=0: all processes in calling proc prgroup  #INCLUDES:<signal.h>
+SIGNALS char *strsignal(int sig); RETURNS:ptr to signal desc string #INCLUDES:<string.h><signal.h>
+SIGNALS void psignal(int sig,const char *msg); RETURNS:void #INCLUDES:<signal.h>
+SIGNALS int sigemptyset(sigset_t *set); RETURNS:0 or -1(error) #INCLUDES:<signal.h>
+SIGNALS int sigfillset(sigset_t *set); RETURNS:0 or -1(error) #INCLUDES:<signal.h>
+SIGNALS int sigaddset(const sigset_t *set,int sig); RETURNS:0 or -1(error)  #INCLUDES:<signal.h>
+SIGNALS int sigdelset(const sigset_t *set,int sig); RETURNS:0 or -1(error)  #INCLUDES:<signal.h>
+SIGNALS int sigismember(const sigset_t *set,int sig); RETURNS: 1 if sig member of set,0 if not or -1(error) #INCLUDES:<signal.h>
+SIGNALS int sigandset(sigset_t *dest,sigset_t *left,sigset_t *right); RETURNS: 0 or -1(error) #INCLUDES:<signal.h>
+SIGNALS int sigorset(sigset_t *dest, sigset_t *left,sigset_t *right); RETURNS: 0 or -1(error) #INCLUDES:<signal.h>
+SIGNALS int sigisemptyset(const sigset_t *set); RETURNS 1 if empty, or 0 #INCLUDES:<signal.h>
+SIGNALS int sigprocmask(int how,const sigset_t *set,sigset_t *oldset); RETURNS 0 or -1(error) how[SIG_BLOCK,SIG_UNBLOCK,SIG_SETMASK]  #INCLUDES:<signal.h>
+SIGNALS int sigpending(sigset_t *set); RETURNS 0 or -1(error) #INCLUDES:<signal.h>
+SIGNALS int sigaction(int sig,const struct sigaction *act,struct sigaction *oldact); RETURNS:0 or -1(error) struct sigaction[void (*sa_handler)(int),sigset_t sa_mask,sa_flags...] #INCLUDES:<signal.h>
+SIGNALS int pause(void); RETURNS -1,errno=EINTR #INCLUDES:<unistd.h>
+
+
 
 
 

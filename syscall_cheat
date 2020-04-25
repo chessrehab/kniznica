@@ -105,6 +105,7 @@ FILESYS int umount2(const char *target,int flags); RETURNS:0 or -1(error) flags[
 FILESYS int statvfs(const char *pathname,struct statvfs *ststvsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
 FILESYS int fstatvfs(int fd,struct statvfs *statvfsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
 FILE ATTR int stat(const char *pathname,struct stat *statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime] mode[S_IFREG,S_IFDIR,S_IFCHR,S_IFBLK,S_IFIFO,S_IFSOCK,S_IFLNK] #INCLUDES:<sys/stat.h>
+
 FILE ATTR int lstat(const char *pathname,struct stat statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime] #INCLUDES:<sys/stat.h>
 FILE ATTR int fstat(int fd,struct stat *statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime #INCLUDES:<sys/stat.h>
 FILE ATTR int utime(const char *pathname,const struct utimbuf *buf); RETURNS:0 or -1(error) utimbuf[actime,modtime] #INCLUDES:<utime.h>
@@ -142,12 +143,12 @@ DIRS int rmdir(const char *pathname); RETURNS:0 or -1(error) #INCLUDES:<unistd.h
 DIRS int remove(const char *pathname); RETURNS:0 or -1(error) #INCLUDES:<stdio.h>
 DIRS DIR *opendir(const char *dirpath); RETURNS:dir stream handle or NULL(error) #INCLUDES:<dirent.h>
 DIRS DIR *fdopendir(int fd); RETURNS:dir stream handle or NULL(error) #INCLUDES:<dirent.h>
-DIRS struct dirent *readdir(DIR *dirp); RETURNS:ptr to struct of next dir entry or NULL(error or end of entries) struct dirent[ino_t d_ino,char d_name[]] #INCLUDES:<dirent.h>
+DIRS struct dirent *readdir(DIR *dirp); RETURNS:ptr to struct of next dir entry or NULL(error or end of entries) #INCLUDES:<dirent.h>
 DIRS void rewinddir(DIR *dirp); RETURNS:void #INCLUDES:<dirent.h>
 DIRS int closedir(DIR *dirp); RETURNS:0 or -1(error) #INCLUDES:<dirent.h>
 DIRS int dirfd(DIR *dirp); RETURNS:fd or -1(error) #INCLUDES:<dirent.h>
 DIRS int readdir_r(DIR *dirp,struct dirent *entry,struct dirent **result); RETURNS 0 or pos.num=errno(error) #INCLUDES:<dirent.h>
-DIRS int ntfw(const char *dirpath,int (*func) (const char *pathname,const struct stat *statbuf,int typeflag,struct FTW *ftwbuf),int nopenfd,int flags); RETURNS:0 or -1(error) #INCLUDES:<ftw.h>
+DIRS int ntfw(const char *dirpath,int (*func) (const char *pathname,const struct stat *statbuf,int typeflag,struct FTW *ftwbuf),int nopenfd,int flags); RETURNS:0 or -1(error) struct FTW[int base,int level] #INCLUDES:<ftw.h>
 DIRS char *getcwd(char *cwdbuf,size_t size); RETURNS:cwdbuf or NULL(error) #INCLUDES:<unistd.h>
 DIRS int chdir(const char *pathname); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
 DIRS int fchdir(int fd); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>

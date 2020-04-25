@@ -142,7 +142,7 @@ DIRS int rmdir(const char *pathname); RETURNS:0 or -1(error) #INCLUDES:<unistd.h
 DIRS int remove(const char *pathname); RETURNS:0 or -1(error) #INCLUDES:<stdio.h>
 DIRS DIR *opendir(const char *dirpath); RETURNS:dir stream handle or NULL(error) #INCLUDES:<dirent.h>
 DIRS DIR *fdopendir(int fd); RETURNS:dir stream handle or NULL(error) #INCLUDES:<dirent.h>
-DIRS struct dirent *readdir(DIR *dirp); RETURNS:ptr to struct of next dir entry or NULL(error or end of entries) struct dirent[ino_t d_ino,char d_name[]] #INCLUDES:<dirent.h>
+DIRS struct dirent *readdir(DIR *dirp); RETURNS:ptr to struct of next dir entry or NULL(error or end of entries) #INCLUDES:<dirent.h>
 DIRS void rewinddir(DIR *dirp); RETURNS:void #INCLUDES:<dirent.h>
 DIRS int closedir(DIR *dirp); RETURNS:0 or -1(error) #INCLUDES:<dirent.h>
 DIRS int dirfd(DIR *dirp); RETURNS:fd or -1(error) #INCLUDES:<dirent.h>
@@ -179,33 +179,3 @@ SIGNALS int sigprocmask(int how,const sigset_t *set,sigset_t *oldset); RETURNS 0
 SIGNALS int sigpending(sigset_t *set); RETURNS 0 or -1(error) #INCLUDES:<signal.h>
 SIGNALS int sigaction(int sig,const struct sigaction *act,struct sigaction *oldact); RETURNS:0 or -1(error) struct sigaction[void (*sa_handler)(int),sigset_t sa_mask,sa_flags...] #INCLUDES:<signal.h>
 SIGNALS int pause(void); RETURNS -1,errno=EINTR #INCLUDES:<unistd.h>
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-

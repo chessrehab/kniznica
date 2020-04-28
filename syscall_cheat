@@ -178,8 +178,22 @@ SIGNALS int sigorset(sigset_t *dest, sigset_t *left,sigset_t *right); RETURNS: 0
 SIGNALS int sigisemptyset(const sigset_t *set); RETURNS 1 if empty, or 0 #INCLUDES:<signal.h>
 SIGNALS int sigprocmask(int how,const sigset_t *set,sigset_t *oldset); RETURNS 0 or -1(error) how[SIG_BLOCK,SIG_UNBLOCK,SIG_SETMASK]  #INCLUDES:<signal.h>
 SIGNALS int sigpending(sigset_t *set); RETURNS 0 or -1(error) #INCLUDES:<signal.h>
-SIGNALS int sigaction(int sig,const struct sigaction *act,struct sigaction *oldact); RETURNS:0 or -1(error) struct sigaction[void (*sa_handler)(int),sigset_t sa_mask,sa_flags...] #INCLUDES:<signal.h>
+SIGNALS int sigaction(int sig,const struct sigaction *act,struct sigaction *oldact); RETURNS:0 or -1(error) struct sigaction[union __sigaction_handler:{void (*sa_handler)(int)/void(*sa_sigaction)(int sig,siginfo_t *siginfo,void *ucontext)},sigset_t sa_mask,sa_flags[SA_SIGINFO,SA_RESTART,SA_ONSTACK...]...] struct siginfo_t[si_signo,si_code,sigval si_val,si_pid,si_uid...] si_code[SI_QUEUE,SI_USER,SI_KERNEL,...] #INCLUDES:<signal.h>
 SIGNALS int pause(void); RETURNS -1,errno=EINTR #INCLUDES:<unistd.h>
+SIGNALS int sigsetjump(sigjmp_buf env,int savesigs); RETURNS:0 on initial call,nonzero on return via siglongjmp() #INCLUDES:<setjmp.h>
+SIGNALS void siglongjmp(sigjmp_buf env,int val); RETURNS:void #INCLUDES:<setjmp.h>
+SIGNALS void abort(void); RETURNS:void #INCLUDES:<stdlib.h> //equal to raise(SIGABRT) //aborts the calling process with coredump
+SIGNALS int sigaltstack(const stack_t *sigstack,stack_t *old_sigstack); RETURNS:0 or -1(error) struct stack_t[void *ss_sp(starting address of alt stack),int ss_flags(SS_ONSTACK,SS_DISABLE),size_t ss_size(size of stack)] #INCLUDES:<signal.h>
+SIGNALS int siginterrupt(int sig,int flag); RETURNS 0 or -1(error) flag[1-interrupts blocking syscalls,0-blocking syscalls are resumed] #INCLUDES:<signal.h>
+SIGNALS void (*sysv_signal(int sig, void (*handler)(int)) ) (int); RETURNS:previous sig desposition or SIG_ERR on error #INCLUDES:<signal.h>
+SIGNALS sigqueue(pid_t,int sig,const union sigval value); RETURNS:0 or -1(error) union sigval:{int sival_int,void *sival_ptr} #INCLUDES:<signal.h>
+SIGNALS int sigsuspend(const sigset_t *mask); RETURNS: -1 with errno set to EINTR #INCLUDES:<signal.h>
+SIGNALS int sigwaitinfo(const sigset_t *set,siginfo_t *info); RETURNS: sig nr or -1(error) #INCLUDES:<signal.h>
+SIGNALS int sigtimedwait(const sigset_t *set,siginfo_t *info,const struct timespec *timeout); RETURNS: sig nr or -1(error) struct timespec:[time_t tv_sec,long tv_nsec] #INCLUDES:<signal.h>
+SIGNALS int signalfd(int fd,const sigset_t *mask,int flags); RETURNS: fd or -1(error); #INCLUDES:<sys/signalfd.h> read from fd:read(sfd,&fdsi,sizeof(struct signalfd_siginfo)) struct signalfd_siginfo[ssi_signo,ssi_errno,ssi_code,ssi_pid,ssi_uid,ssi_fd,ssi_tid,ssi_band,ssi_overrun,ssi_trapno,ssi_status,ssi_status,ssi_int,ssi_ptr,ssi_utime,ssi_stime,ssi_addr]
+
+
+
 
 
 

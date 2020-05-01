@@ -105,7 +105,6 @@ FILESYS int umount2(const char *target,int flags); RETURNS:0 or -1(error) flags[
 FILESYS int statvfs(const char *pathname,struct statvfs *ststvsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
 FILESYS int fstatvfs(int fd,struct statvfs *statvfsbuf); RETURNS:0 or -1(error) struct statvfs[ul f_bsize,ul f_frsize,fsblkcnt_t f_blocks,f_bfree,f_bavail,fsfilcnt f_files,f_ffree,f_avail,ul f_fsid,f_flag,f_namemax] #INCLUDES:<sys/statvfs.h>
 FILE ATTR int stat(const char *pathname,struct stat *statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime] mode[S_IFREG,S_IFDIR,S_IFCHR,S_IFBLK,S_IFIFO,S_IFSOCK,S_IFLNK] #INCLUDES:<sys/stat.h>
-
 FILE ATTR int lstat(const char *pathname,struct stat statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime] #INCLUDES:<sys/stat.h>
 FILE ATTR int fstat(int fd,struct stat *statbuf); RETURNS:0 or -1(error) struct[st_dev,st_ino,st_mode,st_nlink,st_uid,st_gid,st_rdev,st_size,st_blksize,st_blocks,st_atime,st_mtime,st_ctime #INCLUDES:<sys/stat.h>
 FILE ATTR int utime(const char *pathname,const struct utimbuf *buf); RETURNS:0 or -1(error) utimbuf[actime,modtime] #INCLUDES:<utime.h>
@@ -191,6 +190,24 @@ SIGNALS int sigsuspend(const sigset_t *mask); RETURNS: -1 with errno set to EINT
 SIGNALS int sigwaitinfo(const sigset_t *set,siginfo_t *info); RETURNS: sig nr or -1(error) #INCLUDES:<signal.h>
 SIGNALS int sigtimedwait(const sigset_t *set,siginfo_t *info,const struct timespec *timeout); RETURNS: sig nr or -1(error) struct timespec:[time_t tv_sec,long tv_nsec] #INCLUDES:<signal.h>
 SIGNALS int signalfd(int fd,const sigset_t *mask,int flags); RETURNS: fd or -1(error); #INCLUDES:<sys/signalfd.h> read from fd:read(sfd,&fdsi,sizeof(struct signalfd_siginfo)) struct signalfd_siginfo[ssi_signo,ssi_errno,ssi_code,ssi_pid,ssi_uid,ssi_fd,ssi_tid,ssi_band,ssi_overrun,ssi_trapno,ssi_status,ssi_status,ssi_int,ssi_ptr,ssi_utime,ssi_stime,ssi_addr]
+TIMERS int settimer(int which,const struct itimerval *new_value,struct itimerval *old_value); RETURNS: 0 or -1(error) which[ITIMER_REAL,ITIMER_VIRTUAL,ITIMER_PROF] struct itimerval[struct timeval it_interval,struct timeval it_value] struct timeval[time_t tv_sec,suseconds_ttv_usec]  #INCLUDES:<sys/time.h>
+TIMERS int getitimer(int which,struct itimerval *curr_value); RETURNS:0 or -1(error) #INCLUDES:<sys/time.h>
+TIMERS unsigned int alarm(unsigned int seconds); RETURNS:nr of seconds remaining on previous set timer or 0(prev timer wasnt set) #INCLUDES:<unistd.h>
+TIMERS unsigned int sleep(unsigned int seconds); RETURNS: 0 on completion or nr of seconds unslept when prematurely terminated  #INCLUDES:<unistd.h>
+TIMERS int nanosleep(const timespec *request,struct timespec *remain); #RETURNS: 0 on compl sleep or -1(interrupted sleep) struct timespec[time_t tv_sec,long tv_nsec]  #INCLUDES: <time.h>
+TIMERS int clock_gettime(clockid_t clockid,struct timespec *tp); RETURNS:0 or -1(error) clock_id[CLOCK_REALTIME,CLOCK_MONOTONIC,CLOCK_PROCESS_CPUTIME_ID,CLOCk_THREAD_CPUTIME_ID]  #INCLUDES:<time.h>
+TIMERS int clock_settime(clockid_t clockid,const struct timespec *tp); RETURNS:0 or -1(error) #INCLUDES:<time.h>
+TIMERS int clock_getcpuclockid(pid_t pid,clockid_t *clockid); RETURNS:0 or pos err no(error) #INCLUDES:<time.h>
+TIMERS int pthread_getcpuclockid(pthread_t thread,clockid_t *clockid); RETURNS:0 or pos err no (error) #INCLUDES:<time.h>
+TIMERS int clock_nanosleep(clockid_t clockid,int flags,const struct timespec *request,struct timespec *remain); RETURNS:0 or a pos er no (error) clockid[CLOCK_REALTIME,CLOCK_MONOTONIC,CLOCK_PROCESS_CPUTIME_I] flags[0, TIMER_ABSTIME] #INCUDES:<time.h> 
+TIMERS int timer_create(clockid_t clockid,struct sigevent *evp,timer_t *timerid); RETURNS 0 or -1(error) struct sigevent[int sigev_notify[SIGEV_NONE,SIGEV_SIGNAL,SIGEV_THREAD,SIGEV_THREAD_ID],int sigev_signo,union sigval{int sival_int,void *sival_ptr} sigev_value,union _sigev_un{pid_t _tid, struct _sigev_thread[void (*_function) (union sigval),void *attribute]}    #INCLUDES:<signal.h><time.h>
+TIMERS int timer_settime(timer_t timerid,int flags,const struct itimerspec *value,struct itimerspec *old_value); RETURNS:0 or -1(error) struct itimerspec[struct timespec it_interval,struct timespec it_value] struct timespec[time_t tv_sec,long tv_nsec] #INCLUDES:<time.h>
+TIMERS int timer gettime(timer_t timerid,struct itimerspec *curr_value); RETURNS:0 or -1(error) #INCLUDES:<time.h>
+TIMERS int timer_delete(timer_t timerid); RETURNS:0 or -1(error) #INCLUDES<time.h>
+TIMERS int timer_getoverrun(timer_t timerid); RETURNS:timer overrun count or -1(error) #INCLUDES:<time.h>
+TIMERS int timerfd_create(int clockid,int flags); RETURNS:fd or -1(error) flags[TFD_CLOEXEC,TFD_NONBLOCK] #INCLUDES:<sys/timerfd.h>
+TIMERS int timerfd_settime(int fd,int flags,const struct itimerspec *new_value,struct itimerspec *old_value); RETURNS:0 or -1(error) #INCLUDES:<sys/timerfd.h>
+TIMERS int timerfd_gettime(int fd,struct itimerspec *curr_value); RETURNS:0 or -1(error) #INCLUDES:<sys/timerfd.h>
 
 
 

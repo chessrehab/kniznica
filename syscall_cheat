@@ -160,7 +160,7 @@ FILE EVENTS int inotify_init(void); RETURNS:fd or -1(error) #INCLUDES:<sys/inoti
 FILE EVENTS int inotify_add_watch(int fd,const char *pathname,uint32_t mask); RETURNS:wdescriptor or -1(error) events[IN_ACCESS,IN_ATTRIB,IN_CLOSE_WRITE,IN_CLOSE_NOWRITE,IN_CREATE,IN_DELETE,IN_DELETE_SELF,IN_MODIFY_SELF,IN_MOVED_FROM,IN_MOVED_TO,IN_OPEN,IN_ALL_EVENTS,IN_MOVE,IN_CLOSE,IN_DONT_FOLLOW,IN_MASK_ADD,IN_ONESHOT,IN_ONLYDIR,IN_IGNORED,IN_ISDIR,IN_Q_OVERFLOW,IN_UNMOUNT]  #INCLUDES"<sys/inotify.h>
 FILE EVENTS int inotify_rm_watch(int fd,int wd); RETURNS:0 or -1(error) #INCLUDES:<sys/inotify.h>
 FILE EVENTS int read(int inotifyFd,char *buf,int buf_len); event=(struct inotify_event *) reads from fd returned from inotify_init, cast to ptr to struct inotify_event[int wd,uint32_t mask,uint32_t cookie,uint32_t len, char name[]] ;RETURNS nr of bytes read
-SIGNALS int signals[SIGABRT-6,SIGALRM-14,SIGBUS-7,SIGCHLD-17,SIGCONT-18.SIGEMT-ud,SIGFPE-8,SIGHUP-1,SIGILL-4,SIGINT-2,SIGIO-29,SIGPOLL,SIGKILL-9,SIGPIPE-13,SIGPROF-27,SIGPWR-30,SIGQUIT-3,SIGSEGV-11,SIGSTKFLT-16,SIGSTOP-19,SIGSYS-31,SIGTERM-15,SIGTRAP-5,SIGTSTP-20,SIGTTIN-21,SIGTTOU-22,SIGURG-23,SIGUSR!-10,SIGUSR2-12,SIGVTALRM-26,SIGWINCH-28,SIGXCPU-24,SIGXFSZ-25
+SIGNALS ***int signals[SIGABRT-6,SIGALRM-14,SIGBUS-7,SIGCHLD-17,SIGCONT-18.SIGEMT-ud,SIGFPE-8,SIGHUP-1,SIGILL-4,SIGINT-2,SIGIO-29,SIGPOLL,SIGKILL-9,SIGPIPE-13,SIGPROF-27,SIGPWR-30,SIGQUIT-3,SIGSEGV-11,SIGSTKFLT-16,SIGSTOP-19,SIGSYS-31,SIGTERM-15,SIGTRAP-5,SIGTSTP-20,SIGTTIN-21,SIGTTOU-22,SIGURG-23,SIGUSR!-10,SIGUSR2-12,SIGVTALRM-26,SIGWINCH-28,SIGXCPU-24,SIGXFSZ-25
 SIGNALS void(*signal(int sig,void (*handler)(int))) (int); RETURNS:pointer to function of the signal handler that is being changed to new handler or SIG_ERR(error) #INCLUDES:<signal.h>
 SIGNALS int kill(pid_t pid,int sig); RETURNS:0 or -1(error) pid>0:sent to pid,pid==0:every porc in pids porocess group incl. pid,pid==-1: to all processes pid has permissions to send #INCLUDES:<signal.h>
 SIGNALS int raise(int sig); RETURNS:0 or nonzero(error) #INCLUDES<signal.h>
@@ -185,12 +185,13 @@ SIGNALS void abort(void); RETURNS:void #INCLUDES:<stdlib.h> //equal to raise(SIG
 SIGNALS int sigaltstack(const stack_t *sigstack,stack_t *old_sigstack); RETURNS:0 or -1(error) struct stack_t[void *ss_sp(starting address of alt stack),int ss_flags(SS_ONSTACK,SS_DISABLE),size_t ss_size(size of stack)] #INCLUDES:<signal.h>
 SIGNALS int siginterrupt(int sig,int flag); RETURNS 0 or -1(error) flag[1-interrupts blocking syscalls,0-blocking syscalls are resumed] #INCLUDES:<signal.h>
 SIGNALS void (*sysv_signal(int sig, void (*handler)(int)) ) (int); RETURNS:previous sig desposition or SIG_ERR on error #INCLUDES:<signal.h>
-SIGNALS sigqueue(pid_t,int sig,const union sigval value); RETURNS:0 or -1(error) union sigval:{int sival_int,void *sival_ptr} #INCLUDES:<signal.h>
+SIGNALS int sigqueue(pid_t,int sig,const union sigval value); RETURNS:0 or -1(error) union sigval:{int sival_int,void *sival_ptr} #INCLUDES:<signal.h>
 SIGNALS int sigsuspend(const sigset_t *mask); RETURNS: -1 with errno set to EINTR #INCLUDES:<signal.h>
 SIGNALS int sigwaitinfo(const sigset_t *set,siginfo_t *info); RETURNS: sig nr or -1(error) #INCLUDES:<signal.h>
 SIGNALS int sigtimedwait(const sigset_t *set,siginfo_t *info,const struct timespec *timeout); RETURNS: sig nr or -1(error) struct timespec:[time_t tv_sec,long tv_nsec] #INCLUDES:<signal.h>
 SIGNALS int signalfd(int fd,const sigset_t *mask,int flags); RETURNS: fd or -1(error); #INCLUDES:<sys/signalfd.h> read from fd:read(sfd,&fdsi,sizeof(struct signalfd_siginfo)) struct signalfd_siginfo[ssi_signo,ssi_errno,ssi_code,ssi_pid,ssi_uid,ssi_fd,ssi_tid,ssi_band,ssi_overrun,ssi_trapno,ssi_status,ssi_status,ssi_int,ssi_ptr,ssi_utime,ssi_stime,ssi_addr]
-TIMERS int settimer(int which,const struct itimerval *new_value,struct itimerval *old_value); RETURNS: 0 or -1(error) which[ITIMER_REAL,ITIMER_VIRTUAL,ITIMER_PROF] struct itimerval[struct timeval it_interval,struct timeval it_value] struct timeval[time_t tv_sec,suseconds_ttv_usec]  #INCLUDES:<sys/time.h>
+
+TIMERS int setitimer(int which,const struct itimerval *new_value,struct itimerval *old_value); RETURNS: 0 or -1(error) which[ITIMER_REAL,ITIMER_VIRTUAL,ITIMER_PROF] struct itimerval[struct timeval it_interval,struct timeval it_value] struct timeval[time_t tv_sec,suseconds_ttv_usec]  #INCLUDES:<sys/time.h>
 TIMERS int getitimer(int which,struct itimerval *curr_value); RETURNS:0 or -1(error) #INCLUDES:<sys/time.h>
 TIMERS unsigned int alarm(unsigned int seconds); RETURNS:nr of seconds remaining on previous set timer or 0(prev timer wasnt set) #INCLUDES:<unistd.h>
 TIMERS unsigned int sleep(unsigned int seconds); RETURNS: 0 on completion or nr of seconds unslept when prematurely terminated  #INCLUDES:<unistd.h>

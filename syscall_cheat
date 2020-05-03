@@ -229,6 +229,14 @@ PROCESS CREATION void _exit(int status); RETURNS:void #INCLUDES:<unistd.h>
 PROCESS CREATION void exit(int status); RETURNS:void #INCLUDES:<stdlib.h>
 PROCESS CREATION int atexit(void (*func)(void)); RETURNS:0 or nonzero(error) #INCLUDES:<stdlib.h>
 PROCESS CREATION int on_exit(void (*func)(int,void*),void *arg); RETURNS:0 or nonzero(error) #INCLUDES:<stdlib.h>
+PROCESS CREATION pid_t wait(int *status); RETURNS:proc id of terminated proc or -1(error) #INCLUDES:<sys/wait.h>
+PROCESS CREATION pid_t waitpid(pid_t pid,int *status,int options); RETURNS:child proc id,0 in case no change in status for async,ECHILD if no children to wait for or -1(error) options[WUNTRACED(also stopped),WCONTINUED(continued),WNOHANG(no blocking)] macro(status)[WIFEXITED(status)-normal[WEXITSTATUS(status)-ex_status],WIFSIGNALED(status)-killed[WTERMSIG(s),WCOREDUMP(s)],WIFSTOPPED(s)[WSTOPSIG(s)],WIFCONTINUED(s)] #INCLUDES:<sys/wait.h>
+PROCESS CREATION int waitid(idtype_t idtype,id_t,siginfo_t *infop,int options); RETURNS:0 on success or when async and no children to wait for or -1(error) idtype[P_ALL-all,P_PID-only pid=id,P_PGID-only pgid=id] options[WEXITED|WSTOPPED|WCONTINUED|WNOHANG|WNOWAIT] infop[si_code[CLD_EXITED&CLD_KILLED&CLD_STOPPED&CLD_CONTINUED],si_pid,si_status[exit status & stop/continue/terminate sig]]  #INCLUDES:<sys/wait.h>
+PROCESS CREATION pid_t wait3(int *status,int options,struct rusage *rusage); RETURNS:pid of child or -1(error) #INCLUDES:<sys/resource.h><sys/wait.h>
+PROCESS CREATION pid_t wait4(pid_t pid, int *status,int options,struct rusage *rusage); RETURNS:pid of child or -1(error) #INCLUDES:<sys/resource.h><sys/wait.h>
+
+
+
 
 
 

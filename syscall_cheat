@@ -100,7 +100,7 @@ SYSTEM int uname(struct utsname *utsbuf): RETURNS:0 or -1(error) struct[ chars *
 I/O FILE BUFFERING int setvbuf(FILE *stream,char *buf,int mode,size_t size); RETURNS: 0 or nonzero(error) mode[_IONBF,_IOLBF,_IOFBF]  #INCLUDES:<stdio.h>
 I/O FILE BUFFERING void setbuf(FILE *stream,char *buf); RETURNS:void  #INCLUDES:<stdio.h>
 I/O FILE BUFFERING void setbuffer(FILE *stream,char *buf,size_t size); RETURNS:void #INCLUDES:<stdio.h>
-I/O FILE BUFFERING inf fflush(FILE *stream); RETURNS: 0 or EOF(error) #INCLUDES:<stdio.h>
+I/O FILE BUFFERING int fflush(FILE *stream); RETURNS: 0 or EOF(error) #INCLUDES:<stdio.h>
 I/O FILE BUFFERING int fsync(int fd); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
 I/O FILE BUFFERING int fdatasync(int fd); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
 I/O FILE BUFFERING void sync(void); RETURNS:void #INCLUDES:<unistd.h>
@@ -173,7 +173,7 @@ FILE EVENTS int inotify_add_watch(int fd,const char *pathname,uint32_t mask); RE
 FILE EVENTS int inotify_rm_watch(int fd,int wd); RETURNS:0 or -1(error) #INCLUDES:<sys/inotify.h>
 FILE EVENTS int read(int inotifyFd,char *buf,int buf_len); event=(struct inotify_event *) reads from fd returned from inotify_init, cast to ptr to struct inotify_event[int wd,uint32_t mask,uint32_t cookie,uint32_t len, char name[]] ;RETURNS nr of bytes read
 
-SIGNALS ***int signals[SIGABRT-6,SIGALRM-14,SIGBUS-7,SIGCHLD-17,SIGCONT-18.SIGEMT-ud,SIGFPE-8,SIGHUP-1,SIGILL-4,SIGINT-2,SIGIO-29,SIGPOLL,SIGKILL-9,SIGPIPE-13,SIGPROF-27,SIGPWR-30,SIGQUIT-3,SIGSEGV-11,SIGSTKFLT-16,SIGSTOP-19,SIGSYS-31,SIGTERM-15,SIGTRAP-5,SIGTSTP-20,SIGTTIN-21,SIGTTOU-22,SIGURG-23,SIGUSR!-10,SIGUSR2-12,SIGVTALRM-26,SIGWINCH-28,SIGXCPU-24,SIGXFSZ-25
+SIGNALS ***int signals[SIGABRT-6,SIGALRM-14,SIGBUS-7,SIGCHLD-17,SIGCONT-18,SIGEMT-ud,SIGFPE-8,SIGHUP-1,SIGILL-4,SIGINT-2,SIGIO-29,SIGPOLL,SIGKILL-9,SIGPIPE-13,SIGPROF-27,SIGPWR-30,SIGQUIT-3,SIGSEGV-11,SIGSTKFLT-16,SIGSTOP-19,SIGSYS-31,SIGTERM-15,SIGTRAP-5,SIGTSTP-20,SIGTTIN-21,SIGTTOU-22,SIGURG-23,SIGUSR!-10,SIGUSR2-12,SIGVTALRM-26,SIGWINCH-28,SIGXCPU-24,SIGXFSZ-25
 SIGNALS void(*signal(int sig,void (*handler)(int))) (int); RETURNS:pointer to function of the signal handler that is being changed to new handler or SIG_ERR(error) #INCLUDES:<signal.h>
 SIGNALS int kill(pid_t pid,int sig); RETURNS:0 or -1(error) pid>0:sent to pid,pid==0:every porc in pids porocess group incl. pid,pid==-1: to all processes pid has permissions to send #INCLUDES:<signal.h>
 SIGNALS int raise(int sig); RETURNS:0 or nonzero(error) #INCLUDES<signal.h>

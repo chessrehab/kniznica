@@ -242,8 +242,9 @@ EXECUTION int execvp(const char *filename,char *const arg[]); RETURNS:never or -
 EXECUTION int execv(const char *pathname, char *const arg[]); RETURNS:never or -1(error) #INCLUDES:<unistd.h>
 EXECUTION int execl(const char *pathname,const char *arg,... /*, (char *) NULL); RETURNS:never or -1(error) #INCLUDES:<unistd.h>
 EXECUTION int fexecve(int fd,char *const argv[],char *const envp[]); RETURNS:never or -1(error) #INCLUDES:<unistd.h>
-EXECUTION int system(const char *command);
-
+EXECUTION int system(const char *command); RETURNS:if command is NULL nonzero if shell is avail,0 if not,-1 if child couldnt be creted, if shell couldnt be execed in child returns -127,on all success, returns termination code of last command #INCLUDES:<stdlib.h>
+EXECUTION int acct(const char *acctfile); RETURNS:0 or -1(error) if acctfile=NULL,turns off accounting, struct acct[char ac_flag,ac_uid,ac_gid,ac_tty,acbtime,ac_utime,ac_stime,ac_etime,ac_mem,ac_io,ac_rw,ac_minflt,ac_majflt,ac_swaps,ac_exitcodeac_comm[],ac_pad[]]  #INCLUDES:<unistd.h>
+EXECUTION int clone(int (*func) (void *),void *child_stack,int flags,void *func_args,.../* pid_t *ptid, struct user_desc *tls, pid_t *ctid */); RETURNS: pid of child or -1(error) flags:lower byte is exitsignal,higherbytes:[CLONE_CHILD_CLEARTID,CLONE_CHILD_SETTID,CLONE_FILES,CLONE_FS,CLONE_IO,CLONE_NEWIPC,CLONE_NEWNET,CLONE_NEWNS,CLONE_NEWPID,CLONE_NEWUSER,CLONE_NEWUTS,CLONE_PARENT,CLONE_PARENT_SETTID,CLONEPID,CLONE_PTRACE,CLONE_SETTLS,CLONE_SIGHAND,CLONE_SYSVSEM,CLONE_THREAD,CLONE_UNTRACED,CLONE_VFORK,CLONE_VM]  #INCLUDES:<sched.h> 
 
 
 

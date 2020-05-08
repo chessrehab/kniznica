@@ -262,37 +262,3 @@ THREADS int pthread_cond_wait(pthread_cond_t *cond,pthread_mutex_t *mutex); RETU
 THREADS int pthread_cond_timedwait(pthread_cond_t *cond,mpthread_mutex_t *mutex,const struct timespec *abstime); RETURNS:0 or ps errno(error) #INCLUDES:<pthread.h>
 THREADS int pthread_cond_init(pthread_cond_t *cond,const pthread_conattr_t *attr); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
 THREADS int pthread_cond_destroy(pthread_cond_t *cond); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -246,6 +246,24 @@ EXECUTION int system(const char *command); RETURNS:if command is NULL nonzero if
 EXECUTION int acct(const char *acctfile); RETURNS:0 or -1(error) if acctfile=NULL,turns off accounting, struct acct[char ac_flag,ac_uid,ac_gid,ac_tty,acbtime,ac_utime,ac_stime,ac_etime,ac_mem,ac_io,ac_rw,ac_minflt,ac_majflt,ac_swaps,ac_exitcodeac_comm[],ac_pad[]]  #INCLUDES:<unistd.h>
 EXECUTION int clone(int (*func) (void *),void *child_stack,int flags,void *func_args,.../* pid_t *ptid, struct user_desc *tls, pid_t *ctid */); RETURNS: pid of child or -1(error) flags:lower byte is exitsignal,higherbytes:[CLONE_CHILD_CLEARTID,CLONE_CHILD_SETTID,CLONE_FILES,CLONE_FS,CLONE_IO,CLONE_NEWIPC,CLONE_NEWNET,CLONE_NEWNS,CLONE_NEWPID,CLONE_NEWUSER,CLONE_NEWUTS,CLONE_PARENT,CLONE_PARENT_SETTID,CLONEPID,CLONE_PTRACE,CLONE_SETTLS,CLONE_SIGHAND,CLONE_SYSVSEM,CLONE_THREAD,CLONE_UNTRACED,CLONE_VFORK,CLONE_VM]  #INCLUDES:<sched.h> 
 
+THREADS int pthread_create(pthread_t *thread,const pthread_attr_t *attr,void *(*start)(void*),void *arg); RETURNS:0 or errno(error) #INCLUDES:<pthread.h>
+THREADS void pthread_exit(void *retval); RETURNS:void #INCLUDES:<pthread.h>
+THREADS pthread_t pthread_self(void); RETURNS:tid #INCLUDES:<pthread.h>
+THREADS int pthread_equal(pthread_t t1,pthread_t t2); RETURNS:nonzero on equal, 0 on nonequal #INCLUDES:<pthread.h>
+THREADS int pthread_join(pthread_t thread,void **retval); RETURNS:0 or poss errno(error); #INCLUDES:<pthread.h>
+THREADS int pthread_detach(pthread_t thread); RETURNS:0 or pos errno(error); #INCLUDES:<pthread.h>
+THREADS int pthread_mutex_lock(pthread_mutex_t *mutex); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_mutex_unlock(pthread_mutex_t *mutex); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_mutex_init(pthread_mutex_t *mutex,const pthread_mutexattr_t *attr); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_mutex_destroy(pthread_mutex_t *mutex); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_cond_signal(pthread_cond_t *cond); RETURNS:0 or ps errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_cond_broadcast(pthread_cond_t *cond); RETURNS:0 or ps errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_cond_wait(pthread_cond_t *cond,pthread_mutex_t *mutex); RETURNS:0 or ps errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_cond_timedwait(pthread_cond_t *cond,mpthread_mutex_t *mutex,const struct timespec *abstime); RETURNS:0 or ps errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_cond_init(pthread_cond_t *cond,const pthread_conattr_t *attr); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_cond_destroy(pthread_cond_t *cond); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+
+
 
 
 

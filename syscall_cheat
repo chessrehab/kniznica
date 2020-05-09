@@ -262,3 +262,20 @@ THREADS int pthread_cond_wait(pthread_cond_t *cond,pthread_mutex_t *mutex); RETU
 THREADS int pthread_cond_timedwait(pthread_cond_t *cond,mpthread_mutex_t *mutex,const struct timespec *abstime); RETURNS:0 or ps errno(error) #INCLUDES:<pthread.h>
 THREADS int pthread_cond_init(pthread_cond_t *cond,const pthread_conattr_t *attr); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
 THREADS int pthread_cond_destroy(pthread_cond_t *cond); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_once(pthread_once_t *once_control,void (*init) (void)); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_key_create(pthread_key_t *key,void(*destructor)(void *)); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_setspecific(pthread_key_t key,const void *value); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS void *pthread_getspecific(pthread_key_t key); RETURNS:ptr or NULL(no thread specific data associated with key #INCLUDES:<pthread.h>
+THREADS int pthread_cancel(pthread_t thread); RETURNS:0 or pos errno(error) #INCLUDES:<pthread.h>
+THREADS int pthread_setcancelstate(int state,int *oldstate); RETURNS:0 or pos errno(error) state[PTHREAD_CANCEL_DISABLE,PTHREAD_CANCEL_ENABLE]  #INCLUDES:<pthread.h>
+THREADS int pthread_setcanceltype(int type,int *oldtype); RETURNS:0 or pos errno(error) type[PTHREAD_CANCEL_ASYNCHRONOUS,PTHREAD_DEFERRED]   #INCLUDES:<pthread.h>
+THREADS void pthread_testcancel(void); RETURNS:void #INCLUDES:<pthread.h>
+THREADS void pthread_cleanup_push(void (*routine)(void*),void *arg); RETURNS:void #INCLUDES:<pthread.h>
+THREADS void pthread_cleanup_pop(int execute); RETURNS:void execute<>0 handler executes #INCLUDES:<pthread.h>
+THREADS int pthread_sigmask(int how,const sigset_t *set,sigset_t *oldset); RETURNS:0 or pos errno(error) #INCLUDES:<signal.h>
+THREADS int pthread_kill(pthread_t thread,int sig); RETURNS:0 or pos errno(error) #INCLUDES:<signal.h>
+THREADS int pthread_sigqueue(pthread_t thread,int sig,const union sigval value); RETURNS:0 or pos errno(error) #INCLUDES:<signal.h>
+THREADS int sigwait(const sigset_t *set,int *sig); RETURNS:0 or pos errno(error) #INCLUDES:<signal.h>
+
+
+

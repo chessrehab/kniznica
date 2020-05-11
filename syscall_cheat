@@ -277,5 +277,14 @@ THREADS int pthread_kill(pthread_t thread,int sig); RETURNS:0 or pos errno(error
 THREADS int pthread_sigqueue(pthread_t thread,int sig,const union sigval value); RETURNS:0 or pos errno(error) #INCLUDES:<signal.h>
 THREADS int sigwait(const sigset_t *set,int *sig); RETURNS:0 or pos errno(error) #INCLUDES:<signal.h>
 
+PROC_GROUPS pid_t getpgrp(void); RETURNS:proc grp id of calling proc  #INCLUDES:<unistd.h>
+PROC_GROUPS int setpgid(pid_t pid,pid_t pgid); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
+PROC_GROUPS pid_t getsid(pid_t pid); RETURNS:session id of spec.proc or -1(error) #INCLUDES:<unistd.h>
+PROC_GROUPS pid_t setsid(void); RETURNS:sessionid of new session or -1(error) #INCLUDES:<unistd.h>
+PROC_GROUPS char *ctermid(char *ttyname); RETURNS:ptr to string containing path name of ctrl terminal or NULL if cannot be determined) #INCLUDES:<stdio.h>
+PROC_GROUPS pid_t tcgetpgrp(int fd); RETURNS:proc grp id of terminals fg process grp or -1(errror) #INCLUDES:<unistd.h>
+PROC_GROUPS int tcsetpgrp(int fd,pid_t pgid); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
+
+
 
 

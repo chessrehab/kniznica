@@ -285,6 +285,30 @@ PROC_GROUPS char *ctermid(char *ttyname); RETURNS:ptr to string containing path 
 PROC_GROUPS pid_t tcgetpgrp(int fd); RETURNS:proc grp id of terminals fg process grp or -1(errror) #INCLUDES:<unistd.h>
 PROC_GROUPS int tcsetpgrp(int fd,pid_t pgid); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
 
+PROC_PRIOR int getpriority(int which,id_t who); RETURNS:nice value ir -1(error) which[PRIO_PROCESS,PRIO_PGRP,PRIO_USER]  #INCLUDES:<sys/resource.h>
+PROC_PRIOR int setpriority(int which,id_t who,int prio); RETURNS:0 or -1(error) which[PRIO_PROCESS,PRIO_PGRP,PRIO_USER] #INCLUDES:<sys/resource.h>
+PROC_PRIOR int sched_get_priority_min(int policy); RETURNS: pos intprio or -1(error) #INCLUDES:<sched.h>
+PROC_PRIOR int sched_get_priority_max(int policy); RETURNS: pos intprio or -1(error) #INCLUDES:<sched.h>
+PROC_PRIOR int sched_setscheduler(pid_t pid,int policy,const struct sched_param *param); RETURNS:0 or -1(error) struct sched_param[int sched_priority] policy[SCHED_FIFO,SCHED_RR,SCHED_OTHER,SCHED_BATCH,SCHED_IDLE] #INCLUDES:<sched.h>
+PROC_PRIOR int sched_setparam(pid_t pid,const struct sched_param *param); RETURNS:0 or -1(error) #INCLUDES:<sched.h>
+PROC_PRIOR int sched_getscheduler(pid_t pid); RETURNS:sched policy or -1(error) #INCLUDES:<sched.h>
+PROC_PRIOR int sched_getparam(pid_t pid,struct sched_param *param); RETURNS:0 or -1(error) #INCLUDES:<sched.h>
+PROC_PRIOR int sched_yield(void); RETURNS: 0 or -1(error) #INCLUDES:<sched.h>
+PROC_PRIOR int sched_rr_get_interval(pid_t pid,struct timespec *tp); RETURNS:0 or -1(error) struct timespec[tv_sec,tv_nsec] #INCLUDES:<sched.h>
+PROC_PRIOR int sched_setaffinity(pid_t pid,size_t len,cpu_set_t *set); RETURNS:0 or -1(error) #INCLUDES:<sched.h>
+PROC_PRIOR void CPU_ZERO(cpu_set_t *set); RETURNS:void #INCLUDES:<sched.h>
+PROC_PRIOR void CPU_SET(int cpu,cpu_set_t *set); RETURNS:void #INCLUDES:<sched.h>
+PROC_PRIOR void CPU_CLR(int cpu,cpu_set_t *set); RETURNS:void #INCLUDES:<sched.h>
+PROC_PRIOR int CPU_ISSET(int cpu,cpu_set_t *set); RETURNS:1 if cpu is in set or 0 otherwise #INCLUDES:<sched.h>
+PROC_PRIOR int sched_getaffinity(pid_t pid,size_t len,cpu_set_t *set); RETURNS:0 or -1(error) #INCLUDES:<sched.h>
+
+PROC_RESOURCES int getrusage(int who,struct rusage *res_usage); RETURNS:0 or -1(error) who[RUSAGE_SELF,RUSAGE_CHILDREN,RUSAGE_THREAD] struct rusage[struct timeval ru_utime,struct timeval ru_stime,long maxrss,long ru_minflt,long rumajflt,long ru_inblock,long ru_oublock,long ru_nvcsw,long ru_nivcsw]  #INCLUDES:<sys/resource.h>
+PROC_RESOURCES int getrlimit(int resource,struct rlimit *rlim); RETURNS:0 or -1(error) struct rlimit[rlim_cur,rlim_max] resource[RLIMIT_AS,RLIMIT_CORE,RLIMIT_CPU,RLIMIT_DATA,RLIMIT_FSIZE,RLIMIT_MEMLOCK,RLIMIT_MSGQUEUE,RLIMIT_NICE,RLIMIT_NOFILE,RLIMIT_NPROC,RLIMIT_RSS,RLIMIT_RTPRIO,RLIMIT_RTTIME,RLIMIT_SIGPENDING,RLIMIT_STACK] #INCLUDES:<sys/resource.h>
+PROC_RESOURCES int setrlimit(int resource,const struct rlimit *rlim); RETURNS:0 or -1(error) struct rlimit[rlim_cur,rlim_max] resource[RLIMIT_AS,RLIMIT_CORE,RLIMIT_CPU,RLIMIT_DATA,RLIMIT_FSIZE,RLIMIT_MEMLOCK,RLIMIT_MSGQUEUE,RLIMIT_NICE,RLIMIT_NOFILE,RLIMIT_NPROC,RLIMIT_RSS,RLIMIT_RTPRIO,RLIMIT_RTTIME,RLIMIT_SIGPENDING,RLIMIT_STACK] #INCLUDES:<sys/resource.h>
+
+
+
+
 
 
 

@@ -312,6 +312,15 @@ DAEMONS void syslog(int priority,const char *format,...); RETURNS:void priority[
 DAEMONS void closelog(void); RETURNS:void #INCLUDES:<syslog.h>
 DAEMONS int setlogmask(int mask_priority); RETURNS:previous log prior mask #INCLUDES:<syslog.h>
 
+LOGIN_ACCOUNTING void setutxent(void); RETURNS:void #INCLUDES:<utmpx.h>
+LOGIN_ACCOUNTING void endutxent(void); RETURNS:vopid #INCLUDES:<utmpx.h>
+LOGIN_ACCOUNTING struct utmpx *getutxent(void); RETURNS:ptr to a statically allocated utmpx struct or NULL if no matching struct utmpx[short ut_type,pid_t ut_pid, char ut_line[32],char ut_id[4],char ut_user[32],char ut_host[256],struct exit_status ut_exit,long ut_session,struct timeval ut_tv,int32_t ut_addr_v6[4],char __unused] struct exit_status[short e_termination,short e_exit] #INCLUDES:<utmpx.h>
+LOGIN_ACCOUNTING struct utmpx *getutxid(const struct utmpx *ut); RETURNS:ptr to a statically allocated utmpx struct or NULL if no matching ut_type[RUN_LVL,BOOT_TIME,NEW_TIME,OLD_TIME,INIT_PROCESS,LOGIN_PROCESS,USER_PROCESS,DEAD_PROCESS] #INCLUDES:<utmpx.h>
+LOGIN_ACCOUNTING struct utmpx *getutxline(const struct utmpx *ut); RETURNS:ptr to a statically allocated utmpx struct or NULL if no matching #INCLUDES:<utmpx.h>
+LOGIN_ACCOUNTING int utmpxname(const char *file); RETURNS:0 or -1(error) #INCLUDES:<utmpx.h>
+LOGIN_ACCOUNTING char *getlogin(void); RETURNS:ptr to username string or NULL(error) #INCLUDES:<unistd.h>
+LOGIN_ACCOUNTING struct utmpx *pututxline(const struct utmpx *ut); RETURNS:ptr to copy of successfuly updated record or NULL(error) #INCLUDES<utmpx.h>
+LOGIN_ACCOUNTING void updwtmpx(const char *wtmpx_file,const struct utmpx *ut); RETURNS:void #INCLUDES:<utmpx.h>
 
 
 

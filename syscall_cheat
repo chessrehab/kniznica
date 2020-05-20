@@ -322,6 +322,12 @@ LOGIN_ACCOUNTING char *getlogin(void); RETURNS:ptr to username string or NULL(er
 LOGIN_ACCOUNTING struct utmpx *pututxline(const struct utmpx *ut); RETURNS:ptr to copy of successfuly updated record or NULL(error) #INCLUDES<utmpx.h>
 LOGIN_ACCOUNTING void updwtmpx(const char *wtmpx_file,const struct utmpx *ut); RETURNS:void #INCLUDES:<utmpx.h>
 
+SHARED_LIB void *dlopen(const char *libfilename,int flags) RETURNS:libhandle or NULL(error) flags[RTLD,RTLD_NOW,RTLD_GLOBAL,RTLD_LOCAL,RTLD_NODELETE,RTLD_NOLOAD,RTLD_DEEPBIND] #INCLUDES:<dlfcn.h>
+SHARED_LIB const char *dlerror(void); RETURNS:ptr to err diagnostic string or NULL if no err #INCLUDES:<dlfcn.h>
+SHARED_LIB void *dlsym(void *handle,char *symbol); RETURNS:address of symbol or NULL if not found pseudohandles[RTLD_DEFAULT,RTLD_NEXT] #INCLUDES:<dlfcn.h>
+SHARED_LIB int dlclose(void *handle); RETURNS:0 or -1(error) #INCLUDES:<dlfcn.h>
+SHARED_LIB int dladdr(const void *addr,Dl_info *info); RETURNS:nonzero if addr was found otherwise 0 #INCLUDES:<dlfcn.h>
+
 
 
 

@@ -328,6 +328,11 @@ SHARED_LIB void *dlsym(void *handle,char *symbol); RETURNS:address of symbol or 
 SHARED_LIB int dlclose(void *handle); RETURNS:0 or -1(error) #INCLUDES:<dlfcn.h>
 SHARED_LIB int dladdr(const void *addr,Dl_info *info); RETURNS:nonzero if addr was found otherwise 0 #INCLUDES:<dlfcn.h>
 
+PIPES_FIFOS int pipe(int filedes[2]); RETURNS:0 or -1(error) #INCLUDES:<unistd.h>
+PIPES_FIFOS FILE *popen(const char *command,const char *mode); RETURNS: file stream or NULL(error) mode[r,w]  #INCLUDES:<stdio.h>
+PIPES_FIFOS int pclose(FILE *stream); RETURNS:term status of child proc or -1(err) #INCLUDES:<stdio.h>
+PIPES_FIFOS int mkfifo(const char *pathname,mode_t mode); RETURNS:0 or -1(err) #INCLUDES:<sys/stat.h>
+
 
 
 

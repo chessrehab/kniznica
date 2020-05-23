@@ -1,1 +1,0 @@
-kniznica prikazov

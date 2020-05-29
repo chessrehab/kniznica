@@ -1,11 +1,13 @@
 /etc/init.d		directory with processes that can be run within initialization of tyhe system
 /etc/rcX.d		directory for different run levels of system init.X stands for nr of run level
+/etc/login.defs		file with initial variables for system init
 /etc/passwd		file that hols information about users
 /etc/shadow		password info (ds since last chg,til can be chgd.,til has to chgd,exp warning ds,disable after exp,disabled days
 /etc/default/useradd	file defining the default behavioor when using useradd command
 /etc/skel		skeleton of files to be copied to new users home directory
 /etc/sudoers		file with super user definitions (should be edited via cmd 'visudo'
 /etc/sudoers.d		directory with files that can contain sudo file definitions
+/etc/group		directory with all the groups on the system
 /etc/.profile		initial file with all settings for all users, can be overwritten by distro updates
 /etc/profile.d		dir with scripts to be run from .profile file, better place to add init scripts for all users setup
 /home/user/.profile	file with settings for particular user

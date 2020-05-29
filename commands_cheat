@@ -1,7 +1,6 @@
+man 1 intro			intro info about section area
+man 1 command			manual for 1 is a section number 1-shell commands, 2-system calls, 3-lib calls
 ls -alFi			(a:shows all info,F: with slashes for directory,l: longlist,i:inode numbers)
-/etc/.profile			(initial file with settings)
-/home/user/.profile		(initial file with user related settings)
-/home/user/.bashrc		(file run from .profile with settings)
 printenv (or env)		(global global env variables)
 printenv VAR			(shows a value of a global env variable)
 echo $VAR			(prints a variable)

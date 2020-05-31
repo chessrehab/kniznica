@@ -32,3 +32,4 @@
 /var			log files
 /proc/partitions	shows partitions on hd
 /etc/fstab		shows hd filesystems
+/etc/apt/sources.list	shows the sources of repositories for the distro

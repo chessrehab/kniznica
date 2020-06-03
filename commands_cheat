@@ -169,7 +169,7 @@ echo $?				(echoes the exit status of the last command)
 diff FILE1 FILE2		(lists differences between  FILE1 and FILE2)
 md5sum FILE*			(calculates checksum on FILE*)
 watch -nS COMM			(executes COMM every S seconds)
-
+readlink -f FILE		(decode the links behind the file to the original file)
 
 
 

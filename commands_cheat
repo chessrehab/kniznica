@@ -170,6 +170,13 @@ diff FILE1 FILE2		(lists differences between  FILE1 and FILE2)
 md5sum FILE*			(calculates checksum on FILE*)
 watch -nS COMM			(executes COMM every S seconds)
 readlink -f FILE		(decode the links behind the file to the original file)
+lsof -p PID			(list of open files or filexidescriptors of process PID)
+exec X>FILE			(redirect fd X to FILE)
+exec X>&fd			(redirect fd X to where fd fd points)
+mktemp template.XXXXXX		(creates a temp file named template.SMTHNG)
+mktemp -t template.XXXXXX	(creates a temp file in /temp named template SMTHNG)
+mktemp -d templatedir.XXXXXX	(creates a temporary directory named templatedir.SMTHNG)
+
 
 
 

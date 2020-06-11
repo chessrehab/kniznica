@@ -173,33 +173,22 @@ readlink -f FILE		(decode the links behind the file to the original file)
 lsof -p PID			(list of open files or filexidescriptors of process PID)
 exec X>FILE			(redirect fd X to FILE)
 exec X>&fd			(redirect fd X to where fd fd points)
+exec X>&-			(removes fd X)
 mktemp template.XXXXXX		(creates a temp file named template.SMTHNG)
 mktemp -t template.XXXXXX	(creates a temp file in /temp named template SMTHNG)
 mktemp -d templatedir.XXXXXX	(creates a temporary directory named templatedir.SMTHNG)
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+trap -l				(lists all signals)
+trap "command" SIG		(in script executes the command when SIG signal is caught)
+trap "command" EXIT		(handles the on exit event)
+trap -- SIG			(trap removal)
+nohup ./script &		(run script with ignoring hangup signal from a termenal,redirecting stdout into nohup.out)
+nice -n X ./script &		(running a script with a preset NICE value)
+renice -n X -p PID		(change niceness of running process PID)
+at -f filename time		(schedule a job that runs a file at time t)
+atq				(lists all scheduled jobs)
+atrm NR				(remove job NR from the queue)
+crontab -l			(show cron table for this user)
+crontab -e			(starts and editor for crontable of current user)
+. /home/file			(source file to script - alibrary of functions e.g.)
+source /home/file		(source file to a script - a library e.g.)
 

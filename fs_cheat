@@ -49,4 +49,5 @@
 /proc/meminfo		memory usage info
 /usr/share/man		manual pages for installled sw
 /usr/share/doc		documentation for installed sw
+/var/cache/apt/archives	all debian packages downloaded and installed by apt
 

@@ -55,3 +55,4 @@
 /proc/version		kernel version info
 /proc/uptime		uptime of running system
 /proc/stat		statistics on processes, cpu load, swap etc
+

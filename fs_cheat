@@ -1,5 +1,3 @@
-/etc/init.d		directory with processes that can be run within initialization of tyhe system
-/etc/rcX.d		directory for different run levels of system init.X stands for nr of run level
 /etc/login.defs		file with initial variables for system init
 /etc/passwd		file that hols information about users
 /etc/shadow		password info (ds since last chg,til can be chgd.,til has to chgd,exp warning ds,disable after exp,disabled days
@@ -50,4 +48,10 @@
 /usr/share/man		manual pages for installled sw
 /usr/share/doc		documentation for installed sw
 /var/cache/apt/archives	all debian packages downloaded and installed by apt
-
+/proc/cpuinfo		info about processors
+/proc/net/dev		active network interfaces info
+/proc/net/route		routing information
+/proc/net/netstat	network statistics
+/proc/version		kernel version info
+/proc/uptime		uptime of running system
+/proc/stat		statistics on processes, cpu load, swap etc

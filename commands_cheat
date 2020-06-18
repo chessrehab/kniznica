@@ -257,4 +257,11 @@ lsmod				(list kernel modules)
 lspci				(list of pci devices)
 neofetch			(high level system info)
 apropos comm			(search for command)
+dpkg --get-selections		(get all the installed packages)
+dpkg --set-selections < FILE	(set selections for installations from external file)
+apt_get -u dselect-upgrade	(install selected packages)
+ps aux --sort=-%cpu		(processes x-all terminals or none a-all users u-user oriented output)
+comm1 && comm2			(run command 1 and command2 only in case comm1 suceeded)
+comm1 || comm2			(run command 1 and command2 only in case comm1 failed)
+
 

@@ -55,4 +55,77 @@
 /proc/version		kernel version info
 /proc/uptime		uptime of running system
 /proc/stat		statistics on processes, cpu load, swap etc
+/var/log/apport.log	log with information about system crashes
+/var/log/auth.log	log about system access and authentification including sudo usage
+/var/log/boot.log	log about startup process
+/var/log/kern.log	log with kernel messages, warnings and errors
+/var/log/syslog		log with info about system events
+/var/log/ufw.log	log with infor fromubuntu firewall
+/var/log/apt/history.log log with info about package installation and removal
+/var/log/faillog	log with failed logins
+/var/log/lastlog	log with info a users
+/etc/hosts		shows hosts ip addresses
+/etc/services		shows standard port numbers for services
+/etc/nsswitch.conf	lists order in which services are accessed in the system
+/etc/resolv.conf	shows DNS configuration
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
 
